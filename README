@@ -1,0 +1,56 @@
+In this lab, we are going to take a moment away from building
+up our Poker project, and see how we can use a little data
+analysis on what we've done lately.  You'll get to use your
+Panda skills to analyze some data that comes out of your
+probability evaluation code.
+
+First, take a look at data1.csv.   This is our output
+from running the probability calculation (that you did
+in the last lab) on a large input file with 198 hands,
+each of which has 4 cards, and was done drawing to 7 total cards.
+
+Suppose for a moment that you did not have the probability
+calculator you just wrote, but had the data in data1.csv.
+Now, suppose that you had a 3 card (not 4 card like in the file)
+hand, but still wanted to draw to 7 total. For example,
+suppose the 3 cards you have are:
+
+8c 7c 6s
+
+The file data1.csv has 11 lines that have those three cards:
+9d 8c 7c 6s,3131,7341,3036,556,10581,220,125,5,5
+9h 8c 7c 6s,3262,7215,3147,572,10412,254,125,8,5
+8c 7c 6s 2d,5836,11315,4010,700,2785,225,121,4,4
+8c 7c 6s 2h,5912,11329,3914,736,2778,221,102,4,4
+8c 7c 6s 3h,5848,11406,3915,667,2794,222,135,6,7
+Ah 8c 7c 6s,5860,11446,3854,741,2739,230,116,5,9
+8s 8c 7c 6s,0,8847,9541,2263,2746,486,1056,53,8
+8c 7c 6s 3c,5038,10208,3749,692,2517,2668,113,8,7
+Ad 8c 7c 6s,5999,11241,3896,690,2809,249,101,6,9
+Js 8c 7c 6s,5893,11194,3942,701,2671,478,112,6,3
+Jh 8c 7c 6s,6040,11374,3825,712,2673,246,117,4,9
+
+We could use these 11 lines to *approximate* the probabilities for what
+we end up with from 8c 7c 6s when we draw 4 more cards to have 7 total cards.
+That approximation will be less accurate than if we were to run the previous
+lab on the three card input above. This loss of accuracy comes from the fact
+that we only have 11 of the possible 49 other choices for the 4th card.
+However, this approxmiation should still be pretty good.
+
+How can we do this approximation?   We can take all the matching rows, and
+sum down the columns to get estimated counts of how often each outcome would
+happen.  We can then take those counts and divde them by the total to get
+probabilities.
+
+**PANDAS STUFF**
+
+Observe that if we had more data, our approximation could become more accurate.
+If you look at data2.csv, you will notice that it is similar to data1.csv,
+but has more rows.   If we were to search for rows that have our specific
+3 cards, we would now find that we have 21 rows instead of 11---almost
+twice as much data to approximate from.  Likewise, data3.csv has
+even more data, so we would expect a more accurate result.
+
+**RE-RUN your code with data2.csv, and data3.csv**
+
+**Any sort of analysis?**
